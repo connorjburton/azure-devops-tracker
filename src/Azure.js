@@ -36,7 +36,8 @@ class Azure {
         url.searchParams.append('api-version', Constants.AZURE.VERSION);
         
         const request = superagent[method](url.href)
-            .accept('application/json')    
+            .accept('application/json')
+            .set('Content-Type', Constants.AZURE.CONTENT_TYPE[method.toUpperCase()])    
             .set('Authorization', `Basic ${window.btoa(`:${this.pat}`)}`);
 
         if (body) {
@@ -48,6 +49,10 @@ class Azure {
 
     getWi(id) {
         return this.query('get', `wit/workitems/${id}`);
+    }
+
+    updateWi(id, key, value) {
+        return this.query('patch', `wit/workitems/${id}`, undefined, [ { op: 'replace', path: `/fields/${key}`, value } ]);
     }
 }
 
