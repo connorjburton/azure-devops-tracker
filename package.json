@@ -29,7 +29,7 @@
     ]
   },
   "devDependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "pouchdb": "^7.1.1",
     "spectre.css": "^0.5.8",
